@@ -58,7 +58,7 @@ function AppViewModel()
             return Math.sqrt(Math.pow(this.screenWidth(), 2) + Math.pow(this.screenHeight(), 2));
         }, this);
     
-    this.screenSizeDiagonal = ko.observable(15.4);
+    this.screenSizeDiagonal = ko.observable(3.5);
 
     this.screenDefinition = ko.computed(function() {
             return this.screenDiagonal() / this.screenSizeDiagonal();
