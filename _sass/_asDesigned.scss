@@ -1,0 +1,54 @@
+﻿//Design colors
+$settings-colors-pink: 		rgb(236, 121, 167);
+$settings-colors-orange: 	rgb(236, 167, 121);
+$settings-colors-yellow: 	rgb(236, 236, 121);
+$settings-colors-green: 	rgb(144, 236, 121);
+$settings-colors-blue: 		rgb(121, 167, 236);
+$settings-colors-lightgray:	rgb(216, 216, 216);
+$settings-colors-darkgray:	rgb( 89,  89,  89);
+
+//<div id="asDesigned-interface">
+//	<div id="asDesigned-startIcon"></div>
+//	<div id="asDesigned-dialog">
+//		<div id="asDesigned-Caption">Settings</div>
+//		
+//	</div>
+//</div>
+
+#asDesigned-interface {
+	@include grid-unit(1/2, $height: 24, $container-type: both);
+	color: $settings-colors-darkgray;
+
+	#asDesigned-startIcon {
+		@include grid-unit($height: 1, $container-type: both);
+
+		i {
+			@include grid-line($font-size: 1.4);
+			background-color: $settings-colors-blue;
+			color: $settings-colors-lightgray;
+			display: inline-block;
+			text-align: center;
+			width: $unitgs-settings-base-line-height * 1em;
+		}
+	}
+	#asDesigned-dialog {
+		@include grid-unit($height: 23, $container-type: both);
+		background-color: $settings-colors-lightgray;
+		border: solid 0.1em $settings-colors-blue;
+		//Set box sizing to border-box
+		-webkit-box-sizing: border-box;
+		   -moz-box-sizing: border-box;
+		    -ms-box-sizing: border-box;
+		     -o-box-sizing: border-box;
+		        box-sizing: border-box;
+		border-top: solid 0.25em $settings-colors-blue;
+	}
+	#asDesigned-caption {
+		@include grid-unit($font-size: 1.25, $height: 1, $container-type: contained);
+		color: $settings-colors-blue;
+		text-transform: uppercase;
+		font-weight: 700;
+		text-align: center;		
+	}
+
+}
