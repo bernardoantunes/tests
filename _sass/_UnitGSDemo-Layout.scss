@@ -51,7 +51,7 @@ footer { @include grid-unit($font-size: 0.75, $margin-top: 1, $margin-bottom: 1)
 
 //960
 @media screen and (min-width: 60em) {
-	@include unitgs-set-grid-scale(1.2);
+	//@include unitgs-set-grid-scale(1.2);
 }
 
 #asDesigned {

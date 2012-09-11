@@ -8,7 +8,7 @@
 		<!-- Author Screen data -->
 		<fieldset>
 			<legend>Author screen data:</legend>
-			<label for="author-screen-definition">Author Definition</label>
+			<label for="author-screen-definition">Author ppi</label>
 			<input type="text" id="author-screen-definition" value="147"></input><br/>
 		</fieldset>
 
@@ -138,7 +138,7 @@
 	$('#screen-diagonal').val(screenDiagonal.toString());
 
 	//User Input
-	$('#screen-size-diagonal').val(3.5);
+	$('#screen-size-diagonal').val(15.4);
 
 	var screenDefinition = screenDiagonal / parseFloat($('#screen-size-diagonal').val());
 
@@ -148,6 +148,8 @@
 
 	var authorScreenDefinition = parseFloat($('#author-screen-definition').val());
 	var screenDefinitionRatio = screenDefinition / authorScreenDefinition;
+
+screenDefinitionRatio = screenDefinitionRatio * 2;
 
 	$('#screen-definition-ratio').val(screenDefinitionRatio);
 
