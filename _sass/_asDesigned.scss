@@ -16,7 +16,7 @@ $settings-colors-darkgray:	rgb( 89,  89,  89);
 //</div>
 
 #asDesigned-interface {
-	@include grid-unit(1/2, $height: 24, $container-type: both);
+	@include grid-unit($height: 24, $container-type: both);
 	color: $settings-colors-darkgray;
 
 	#asDesigned-startIcon {
@@ -51,4 +51,11 @@ $settings-colors-darkgray:	rgb( 89,  89,  89);
 		text-align: center;		
 	}
 
+}
+
+//640
+@media screen and (min-width: 40em) {
+	#asDesigned-interface {
+		@include grid-unit(1/2, $height: 24, $container-type: both);
+	}
 }

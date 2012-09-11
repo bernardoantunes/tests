@@ -9,7 +9,7 @@
 		<fieldset>
 			<legend>Author screen data:</legend>
 			<label for="author-screen-definition">Author ppi</label>
-			<input type="text" id="author-screen-definition" value="147"></input><br/>
+			<input data-bind="value: authorScreenDefinition" type="text" id="author-screen-definition"/><br/>
 		</fieldset>
 
 		<br/>
@@ -17,145 +17,88 @@
 		<!-- User Screen data -->
 		<fieldset>
 			<legend>User screen data:</legend>
-			<label for="screen-width">Width</label><input type="text" id="screen-width"></input><br/>
-			<label for="screen-height">Height</label><input type="text" id="screen-height"></input><br/>
-			<label for="screen-diagonal">Diagonal</label><input type="text" id="screen-diagonal"></input><br/>
+			<label for="screen-width">Width</label><input data-bind="value: screenWidth" type="text" id="screen-width"></input><br/>
+			<label for="screen-height">Height</label><input data-bind="value: screenHeight" type="text" id="screen-height"/><br/>
+			<label for="screen-diagonal">Diagonal</label><input data-bind="value: screenDiagonal" type="text" id="screen-diagonal"/><br/>
 			<br/>
-			<label for="screen-size-diagonal">Diagonal Size</label><input type="text" id="screen-size-diagonal"></input>inches<br/>
+			<label for="screen-size-diagonal">Diagonal Size</label><input data-bind="value: screenSizeDiagonal" type="text" id="screen-size-diagonal"/>inches<br/>
 			<br/>
-			<label for="screen-definition">Definition</label><input type="text" id="screen-definition"></input>dpi<br/>
+			<label for="screen-definition">Definition</label><input data-bind="value: screenDefinition" type="text" id="screen-definition"/>dpi<br/>
 		</fieldset>
 
 		<br/>
 
-		<!-- Result -->
-		<fieldset>
-			<legend>Result calculation data:</legend>
-			<label for="screen-definition-ratio">Definition Ratio between the Author and the User</label>
-			<input type="text" id="screen-definition-ratio"></input><br/>
-		</fieldset>
+        <!-- Result -->
+        <fieldset>
+            <legend>Result calculation data:</legend>
+            <label for="screen-definition-ratio">Definition Ratio between the Author and the User</label>
+            <input data-bind="value: screenDefinitionRatio" type="text" id="screen-definition-ratio"/><br/>
+        </fieldset>
+
+        <!-- Viewing distance -->
+        <fieldset>
+            <legend>Viewing distance:</legend>
+            <label for="adjust-value">Adjust Value</label>
+            <input data-bind="value: adjustValue" type="text" id="adjust-value"/><br/>
+        </fieldset>
 	</div>
 </div>
 
-
 <script type="text/javascript">
+// This is a simple *viewmodel* - JavaScript that defines the data and behavior of your UI
+function AppViewModel()
+{
 
-        //
-        // mediaRule: ex: "@media screen and (min-width: 8.0 em)"
-        // factor: 1.0
-        //
-        function updateMediaRuleEmByFactor(mediaRule, factor) {
+    this.authorScreenDefinition = ko.observable(147);
 
-            //RegExp to obtain the value of the ems.
-            var regExp = /(\d+(\.?\d+))(?=em)/ig;
+    this.screenWidth = ko.observable(screen.width);
+    this.screenHeight = ko.observable(screen.height);
 
-            var result = mediaRule.replace(regExp, function (matchedValue) {
-                return parseFloat(matchedValue) * factor;
-            });
+    this.screenDiagonal = ko.computed(function() {
+            return Math.sqrt(Math.pow(this.screenWidth(), 2) + Math.pow(this.screenHeight(), 2));
+        }, this);
+    
+    this.screenSizeDiagonal = ko.observable(3.5);
 
-            return result;
-        }
+    this.screenDefinition = ko.computed(function() {
+            return this.screenDiagonal() / this.screenSizeDiagonal();
+        }, this);
 
-        //Updates All the media Em value by a factor.
-        function updateMediaRulesEmByFactor(factor) {
-            var styleSheets = document.styleSheets;
-            var cssRules, cssRule, mediaRules, mediaRulesOriginalValues = null;
-            //Vamos percorrer todos os styleSheets.
-            for (i = 0; i < styleSheets.length; i++) {
+    //Now lets calculate the author/user ratio
 
-                //Vamos obter a lista de CSSRules no StyleSheet em contexto.
-                cssRules = document.styleSheets[i].cssRules;
+    //For tests only REMOVE.
+    this.adjustValue = ko.observable(1);
 
-                if(cssRules != null) {
+    this.screenDefinitionRatio = ko.computed(function() {
+            return this.screenDefinition() / this.authorScreenDefinition() * this.adjustValue();
+        }, this);
+  
 
-                    //Vamos percorrer todos as cssRules.
-                    for (j = 0; j < cssRules.length; j++) {
-                        cssRule = cssRules[j];
-                        //MediaList
-                        mediaRules = cssRule.media;
-                        //Apenas se for uma CSSMediaRule.
-                        if (mediaRules != undefined) {
-                            mediaRulesOriginalValues = mediaRules.originalValues;
+//    this.capitalizeLastName = function() {
+//            var currentVal = this.lastName();
+//            // Read the current value
+//            this.lastName(currentVal.toUpperCase());
+//            
+//            // Write back a modified value
+//        };
+}
 
-                            //Se ainda nao tivermos guardado os valores originais, vamos guarda-los.
-                            if (mediaRulesOriginalValues == undefined) {
+var appViewModel = new AppViewModel();
 
-                                //Vamos criar um array para guardar os valores.
-                                mediaRulesOriginalValues = new Array();
+try {    
+    $('html').css('font-size', appViewModel.screenDefinitionRatio().toString() + 'em');
+    updateMediaRulesEmByFactor(appViewModel.screenDefinitionRatio());
+}
+catch(e) { }
 
-                                //Vamos fazer uma copia dos valores originais.
-                                for (l = 0; l < mediaRules.length; l++) {
-                                    //Esta manhozisse e por causa do IE que obriga a utilizacao da funcao item para obter o elemento.
-                                    mediaRulesOriginalValues.push(mediaRules[l] != undefined ? mediaRules[l] : mediaRules.item(l));
-                                }
+appViewModel.screenDefinitionRatio.subscribe(function (newValue) {
+    try {    
+        $('html').css('font-size', newValue.toString() + 'em');
+        updateMediaRulesEmByFactor(newValue);
+    }
+    catch(e) { }
+});
 
-                                //Vamos os valores originais na lista de MediaRules.
-                                mediaRules.originalValues = mediaRulesOriginalValues;
-                            }
-
-                            //Vamos percorrer a lista de MediaRules.
-                            for (k = 0; k < mediaRules.length; k++) {
-                                var newMediaRule = updateMediaRuleEmByFactor(mediaRulesOriginalValues[k], factor);
-                                //Only update if the rule changed something.
-                                if (mediaRulesOriginalValues[k] != newMediaRule) {
-                                    mediaRules.appendMedium(newMediaRule);
-                                    //Esta manhozisse e por causa do IE que obriga a utilizacao da funcao item para obter o elemento.
-                                    mediaRules.deleteMedium(mediaRules[l] != undefined ? mediaRules[0] : mediaRules.item(0));
-                                }
-                            }
-
-                            //DELETE AFTER TEST
-                            //Vamos percorrer a lista de MediaRules.
-                            //for (k = 0; k < mediaRules.length; k++)
-                            //    document.write(cssRule.media[k] + '</br>');
-
-                        }
-                    }
-                }
-            }
-        }
-
-        if($.cookie('asDesignedCookie') === null)
-        {
-        	//alert('null');
-        	$.cookie('asDesignedCookie', 'You need glasses!', { expires: 9999, path: '/' });
-        }
-        else
-        {
-        	//alert($.cookie('asDesignedCookie'));
-        }
-
-</script>
-
-<script type="text/javascript">
-
-	var screenWidth = screen.width;
-	var screenHeight = screen.height;
-	var screenDiagonal = Math.sqrt(Math.pow(screen.width, 2) + Math.pow(screen.height, 2));
-
-	$('#screen-width').val(screenWidth.toString());
-	$('#screen-height').val(screenHeight.toString());
-	$('#screen-diagonal').val(screenDiagonal.toString());
-
-	//User Input
-    //$('#screen-size-diagonal').val(15.4);
-	$('#screen-size-diagonal').val(3.5);
-
-	var screenDefinition = screenDiagonal / parseFloat($('#screen-size-diagonal').val());
-
-	$('#screen-definition').val(screenDefinition);
-
-	//Now lets calculate the author/user ratio
-
-	var authorScreenDefinition = parseFloat($('#author-screen-definition').val());
-	var screenDefinitionRatio = screenDefinition / authorScreenDefinition;
-
-screenDefinitionRatio = screenDefinitionRatio * 2;
-
-	$('#screen-definition-ratio').val(screenDefinitionRatio);
-
-	$('html').css('font-size', screenDefinitionRatio.toString() + 'em');
-	//$('#asDesigned').css('font-size', screenDefinitionRatio.toString() + 'em');
-
-	updateMediaRulesEmByFactor(screenDefinitionRatio);
+// Activates knockout.js
+ko.applyBindings(appViewModel);
 </script>
