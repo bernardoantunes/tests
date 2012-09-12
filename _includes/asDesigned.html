@@ -5,44 +5,47 @@
 	<div id="asDesigned-dialog">
 		<div id="asDesigned-caption">Settings</div>
 
-		<!-- Author Screen data -->
-		<fieldset>
-			<legend>Author screen data:</legend>
+        <!-- Author Screen data -->
+        <fieldset id="basic-data-fieldset">
+            <span class="add-on"><i class="icon-resize-full"></i></span>
+            <input data-bind="value: screenSizeDiagonal" type="text" placeholder="Screen size"/>″<br/>
+            <span class="add-on"><i class="icon-picture"></i></span>
+            <select data-bind="options: devicesList, value: viewingDistance, optionsText: 'description', optionsValue: 'viewingDistance'"></select><br/>
+        </fieldset>
+
+        <!-- User Screen data -->
+        <fieldset id="screen-resolution-fieldset">
+            <span class="add-on"><i class="icon-move"></i></span>
+            <i class="icon-resize-horizontal"></i><span data-bind="text: screenWidth"></span>
+            <i class="icon-resize-vertical"></i><span data-bind="text: screenHeight"></span>
+        </fieldset>
+
+        <!-- User Custom Adjustments -->
+        <fieldset id="custom-adjustments-fieldset">
+            <span class="add-on"><i class="icon-eye-open"></i></span>
+            <input data-bind="value: viewingDistance" type="text" placeholder="Viewing distance"/>″<br/>
+            <span class="add-on"><i class="icon-search"></i></span>
+            <input data-bind="value: userReadability" type="text" placeholder="Zoom adjustment"/><br/>
+        </fieldset>
+
+		<!-- User Screen data -->
+		<fieldset style="display: none">
+			<label for="screen-diagonal">Diagonal</label><input data-bind="value: screenDiagonal" type="text" id="screen-diagonal"/><br/>
+			<br/>
+			<label for="screen-definition">Definition</label><input data-bind="value: screenDefinition" type="text" id="screen-definition"/>dpi<br/>
+
+            <legend>Result calculation data:</legend>
+            <label for="screen-definition-ratio">Definition Ratio between the Author and the User</label>
+            <input data-bind="value: screenDefinitionRatio" type="text" id="screen-definition-ratio"/><br/>
+
+            <legend>Author screen data:</legend>
             <label for="author-screen-definition">Author ppi</label>
             <input data-bind="value: authorScreenDefinition" type="text" id="author-screen-definition"/><br/>
 
             <label for="author-viewing-distance">Author Viewing Distance</label>
             <input data-bind="value: authorViewingDistance" type="text" id="author-viewing-distance"/><br/>
-		</fieldset>
 
-		<br/>
-
-		<!-- User Screen data -->
-		<fieldset>
-			<legend>User screen data:</legend>
-			<label for="screen-width">Width</label><input data-bind="value: screenWidth" type="text" id="screen-width"></input><br/>
-			<label for="screen-height">Height</label><input data-bind="value: screenHeight" type="text" id="screen-height"/><br/>
-			<label for="screen-diagonal">Diagonal</label><input data-bind="value: screenDiagonal" type="text" id="screen-diagonal"/><br/>
-			<br/>
-			<label for="screen-size-diagonal">Diagonal Size</label><input data-bind="value: screenSizeDiagonal" type="text" id="screen-size-diagonal"/>inches<br/>
-			<br/>
-			<label for="screen-definition">Definition</label><input data-bind="value: screenDefinition" type="text" id="screen-definition"/>dpi<br/>
-		</fieldset>
-
-		<br/>
-
-        <!-- Result -->
-        <fieldset>
-            <legend>Result calculation data:</legend>
-            <label for="screen-definition-ratio">Definition Ratio between the Author and the User</label>
-            <input data-bind="value: screenDefinitionRatio" type="text" id="screen-definition-ratio"/><br/>
-        </fieldset>
-
-        <!-- Viewing distance -->
-        <fieldset>
             <legend>Viewing distance:</legend>
-            <label for="viewing-distance">Distance</label>
-            <input data-bind="value: viewingDistance" type="text" id="viewing-distance"/><br/>
             <label for="viewing-diameter">Diameter</label>
             <input data-bind="value: screenSizeDiagonal" type="text" id="viewing-diameter"/><br/>
             <label for="viewing-angle">Angle</label>
@@ -61,14 +64,30 @@ function calculateViewingAngle(distance, diameter)
     return 2 * Math.atan(diameter / (2 * distance) ) * 57.2957795;
 }
 
+//Class with the device information.
+function DeviceInfo(description, viewingDistance)
+{
+    this.description = description;
+    this.viewingDistance = viewingDistance;
+}
 
 // This is a simple *viewmodel* - JavaScript that defines the data and behavior of your UI
 function AppViewModel()
 {
+    this.devicesList = [
+        new DeviceInfo("none", -1),
+        new DeviceInfo("SmartPhone", 15),
+        new DeviceInfo("Tablet", 18),
+        new DeviceInfo("Laptop", 20),
+        new DeviceInfo("Desktop", 24),
+        new DeviceInfo("TV", 0),
+        new DeviceInfo("Other", 0)
+        ];
 
     this.authorScreenDefinition = ko.observable(147.0230825775055);
     this.authorViewingDistance = ko.observable(20);
 
+    this.userReadability = ko.observable(1);
 
     this.screenWidth = ko.observable(screen.width);
     this.screenHeight = ko.observable(screen.height);
@@ -86,11 +105,12 @@ function AppViewModel()
     //Now lets calculate the author/user ratio
 
     //For tests only REMOVE.
-    this.viewingDistance = ko.observable(12);
+    this.viewingDistance = ko.observable(15);
 
     this.adjustValue = ko.computed(function() {
             return calculateViewingAngle(this.authorViewingDistance(), 1) /
-                calculateViewingAngle(this.viewingDistance(), 1);
+                calculateViewingAngle(this.viewingDistance(), 1) *
+                this.userReadability();
         }, this);
 
     this.screenDefinitionRatio = ko.computed(function() {
@@ -138,16 +158,16 @@ function AppViewModel()
 
 var appViewModel = new AppViewModel();
 
-try {    
-    $('html').css('font-size', appViewModel.screenDefinitionRatio().toString() + 'em');
-    updateMediaRulesEmByFactor(appViewModel.screenDefinitionRatio());
+try {
+    if(appViewModel.screenSizeDiagonal() != "") $('html').css('font-size', appViewModel.screenDefinitionRatio().toString() + 'em');
+    if(appViewModel.viewingDistance() != "") updateMediaRulesEmByFactor(appViewModel.screenDefinitionRatio());
 }
 catch(e) { }
 
 appViewModel.screenDefinitionRatio.subscribe(function (newValue) {
     try {    
-        $('html').css('font-size', newValue.toString() + 'em');
-        updateMediaRulesEmByFactor(newValue);
+        if(appViewModel.screenSizeDiagonal() != "") $('html').css('font-size', newValue.toString() + 'em');
+        if(appViewModel.viewingDistance() != "") updateMediaRulesEmByFactor(newValue);
     }
     catch(e) { }
 });

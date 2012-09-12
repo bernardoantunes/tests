@@ -423,7 +423,6 @@ footer {
   padding-bottom: 0;
   margin-top: 0;
   margin-bottom: 0;
-  height: 45em;
   width: 100%;
   margin-left: 0%;
   margin-right: 0%;
@@ -434,7 +433,6 @@ footer {
   display: block;
   *zoom: 1;
   color: #595959;
-  *zoom: 1;
 }
 /* line 186, ../_sass/_UnitGS.scss */
 #asDesigned-interface:before, #asDesigned-interface:after {
@@ -445,16 +443,7 @@ footer {
 #asDesigned-interface:after {
   clear: both;
 }
-/* line 186, ../_sass/_UnitGS.scss */
-#asDesigned-interface:before, #asDesigned-interface:after {
-  content: "";
-  display: table;
-}
-/* line 190, ../_sass/_UnitGS.scss */
-#asDesigned-interface:after {
-  clear: both;
-}
-/* line 23, ../_sass/_asDesigned.scss */
+/* line 22, ../_sass/_asDesigned.scss */
 #asDesigned-interface #asDesigned-startIcon {
   font-size: 1em;
   line-height: 1.5;
@@ -482,7 +471,7 @@ footer {
 #asDesigned-interface #asDesigned-startIcon:after {
   clear: both;
 }
-/* line 26, ../_sass/_asDesigned.scss */
+/* line 25, ../_sass/_asDesigned.scss */
 #asDesigned-interface #asDesigned-startIcon i {
   font-size: 1.4em;
   line-height: 1.07143;
@@ -496,7 +485,7 @@ footer {
   text-align: center;
   width: 1.5em;
 }
-/* line 35, ../_sass/_asDesigned.scss */
+/* line 34, ../_sass/_asDesigned.scss */
 #asDesigned-interface #asDesigned-dialog {
   font-size: 1em;
   line-height: 1.5;
@@ -504,7 +493,6 @@ footer {
   padding-bottom: 0;
   margin-top: 0;
   margin-bottom: 0;
-  height: 43.5em;
   width: 100%;
   margin-left: 0%;
   margin-right: 0%;
@@ -523,6 +511,31 @@ footer {
   box-sizing: border-box;
   border-top: solid 0.25em #79a7ec;
 }
+/* line 39, ../_sass/_asDesigned.scss */
+#asDesigned-interface #asDesigned-dialog i {
+  margin: 0.125em 0;
+  display: inline-block;
+  width: 1.5em;
+  text-align: center;
+  color: #444;
+  text-shadow: 0 0 0.125em #ddd;
+}
+/* line 52, ../_sass/_asDesigned.scss */
+#asDesigned-interface #asDesigned-dialog select, #asDesigned-interface #asDesigned-dialog input, #asDesigned-interface #asDesigned-dialog label {
+  width: 3em;
+  border: 0.125em solid #dadada;
+  border-radius: 0.25em;
+  padding: 0.2em;
+}
+/* line 61, ../_sass/_asDesigned.scss */
+#asDesigned-interface #asDesigned-dialog select {
+  width: 7em;
+}
+/* line 65, ../_sass/_asDesigned.scss */
+#asDesigned-interface #asDesigned-dialog input:focus, #asDesigned-interface #asDesigned-dialog select:focus {
+  outline: none;
+  border-color: #9ecaed;
+}
 /* line 186, ../_sass/_UnitGS.scss */
 #asDesigned-interface #asDesigned-dialog:before, #asDesigned-interface #asDesigned-dialog:after {
   content: "";
@@ -532,7 +545,73 @@ footer {
 #asDesigned-interface #asDesigned-dialog:after {
   clear: both;
 }
-/* line 47, ../_sass/_asDesigned.scss */
+/* line 84, ../_sass/_asDesigned.scss */
+#asDesigned-interface #asDesigned-dialog #basic-data-fieldset {
+  font-size: 1.4em;
+  line-height: 1.07143;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 0.53571em;
+  margin-bottom: 0.53571em;
+  width: 100%;
+  margin-left: 0%;
+  margin-right: 0%;
+  float: left;
+  padding-left: 0.53571em;
+  padding-right: 0.53571em;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  clear: both;
+  display: inline;
+}
+/* line 88, ../_sass/_asDesigned.scss */
+#asDesigned-interface #asDesigned-dialog #screen-resolution-fieldset {
+  font-size: 1.4em;
+  line-height: 1.07143;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  width: 100%;
+  margin-left: 0%;
+  margin-right: 0%;
+  float: left;
+  padding-left: 0.53571em;
+  padding-right: 0.53571em;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  clear: both;
+  display: inline;
+}
+/* line 92, ../_sass/_asDesigned.scss */
+#asDesigned-interface #asDesigned-dialog #custom-adjustments-fieldset {
+  font-size: 1.4em;
+  line-height: 1.07143;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 0.53571em;
+  margin-bottom: 0.53571em;
+  width: 100%;
+  margin-left: 0%;
+  margin-right: 0%;
+  float: left;
+  padding-left: 0.53571em;
+  padding-right: 0.53571em;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  clear: both;
+  display: inline;
+}
+/* line 97, ../_sass/_asDesigned.scss */
 #asDesigned-interface #asDesigned-caption {
   font-size: 1.25em;
   line-height: 1.2;
@@ -561,7 +640,7 @@ footer {
 }
 
 @media screen and (min-width: 40em) {
-  /* line 59, ../_sass/_asDesigned.scss */
+  /* line 109, ../_sass/_asDesigned.scss */
   #asDesigned-interface {
     font-size: 1em;
     line-height: 1.5;
@@ -569,8 +648,7 @@ footer {
     padding-bottom: 0;
     margin-top: 0;
     margin-bottom: 0;
-    height: 36em;
-    width: 50%;
+    width: 33.33333%;
     margin-left: 0%;
     margin-right: 0%;
     float: left;
