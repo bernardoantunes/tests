@@ -8,8 +8,11 @@
 		<!-- Author Screen data -->
 		<fieldset>
 			<legend>Author screen data:</legend>
-			<label for="author-screen-definition">Author ppi</label>
-			<input data-bind="value: authorScreenDefinition" type="text" id="author-screen-definition"/><br/>
+            <label for="author-screen-definition">Author ppi</label>
+            <input data-bind="value: authorScreenDefinition" type="text" id="author-screen-definition"/><br/>
+
+            <label for="author-viewing-distance">Author Viewing Distance</label>
+            <input data-bind="value: authorViewingDistance" type="text" id="author-viewing-distance"/><br/>
 		</fieldset>
 
 		<br/>
@@ -38,6 +41,12 @@
         <!-- Viewing distance -->
         <fieldset>
             <legend>Viewing distance:</legend>
+            <label for="viewing-distance">Distance</label>
+            <input data-bind="value: viewingDistance" type="text" id="viewing-distance"/><br/>
+            <label for="viewing-diameter">Diameter</label>
+            <input data-bind="value: screenSizeDiagonal" type="text" id="viewing-diameter"/><br/>
+            <label for="viewing-angle">Angle</label>
+            <input data-bind="value: viewingAngle" type="text" id="viewing-angle"/><br/>
             <label for="adjust-value">Adjust Value</label>
             <input data-bind="value: adjustValue" type="text" id="adjust-value"/><br/>
         </fieldset>
@@ -45,11 +54,21 @@
 </div>
 
 <script type="text/javascript">
+
+//Returns the viewing angle in degrees.
+function calculateViewingAngle(distance, diameter)
+{
+    return 2 * Math.atan(diameter / (2 * distance) ) * 57.2957795;
+}
+
+
 // This is a simple *viewmodel* - JavaScript that defines the data and behavior of your UI
 function AppViewModel()
 {
 
     this.authorScreenDefinition = ko.observable(147.0230825775055);
+    this.authorViewingDistance = ko.observable(20);
+
 
     this.screenWidth = ko.observable(screen.width);
     this.screenHeight = ko.observable(screen.height);
@@ -67,12 +86,29 @@ function AppViewModel()
     //Now lets calculate the author/user ratio
 
     //For tests only REMOVE.
-    this.adjustValue = ko.observable(1);
+    this.viewingDistance = ko.observable(12);
+
+    this.adjustValue = ko.computed(function() {
+            return calculateViewingAngle(this.authorViewingDistance(), 1) /
+                calculateViewingAngle(this.viewingDistance(), 1);
+        }, this);
 
     this.screenDefinitionRatio = ko.computed(function() {
             return this.screenDefinition() / this.authorScreenDefinition() * this.adjustValue();
         }, this);
   
+    this.viewingAngle = ko.computed(function() {
+            return calculateViewingAngle(this.viewingDistance(), this.screenSizeDiagonal());
+        }, this);
+
+//        Screen Size     
+//        1   15,4    3,5
+//Viewing Distance        Angle       
+//Device  cm  degrees     
+//Desktop 24  2,386978848 35,57594508 8,34087305
+//Laptop  20  2,864192368 42,11341118 10,0012892
+//Tablet  18  3,182280542 46,32032553 11,10594207
+//SmartPhone  12  4,771888061 65,37387308 16,59428994
 
 //    this.capitalizeLastName = function() {
 //            var currentVal = this.lastName();
@@ -81,6 +117,23 @@ function AppViewModel()
 //            
 //            // Write back a modified value
 //        };
+
+//
+//                           TODO:
+//                        **********
+//
+// Q: Corrigir o problema de quando ponho pequeno e depois grande de novo
+//    o layout nao fico como o original.
+//
+// Q: Verificar quando temos ecrans com diferentes aspect ratios
+//    By example, designed in a 4:3 and viewed in a 16:9.
+// A: Se nao se utilizar as dimensoes do ecran para fazer as contas
+//    mas apenas a distancia, nada disso entra em questao.
+//
+// Q: Verificar porque e que com apenas um olho aberto as porporcoes parecem
+//    correctas, mas quando se abre os dois tudo parece mais pequeno.
+//
+
 }
 
 var appViewModel = new AppViewModel();

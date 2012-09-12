@@ -177,14 +177,14 @@ footer {
   transition: all 1s;
 }
 
-/* line 419, E:/Projects/GitHub/bernardoantunes.github.com/tests/_sass/_UnitGS.scss */
+/* line 419, ../_sass/_UnitGS.scss */
 html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, a, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure, footer, header, hgroup, nav, section, menu, time, mark, audio, video, canvas {
   margin: 0;
   padding: 0;
   border: 0;
 }
 
-/* line 431, E:/Projects/GitHub/bernardoantunes.github.com/tests/_sass/_UnitGS.scss */
+/* line 431, ../_sass/_UnitGS.scss */
 body {
   font-size: 1em;
   line-height: 1.5em;
@@ -423,7 +423,7 @@ footer {
   padding-bottom: 0;
   margin-top: 0;
   margin-bottom: 0;
-  height: 36em;
+  height: 45em;
   width: 100%;
   margin-left: 0%;
   margin-right: 0%;
@@ -434,17 +434,27 @@ footer {
   display: block;
   *zoom: 1;
   color: #595959;
+  *zoom: 1;
 }
-/* line 186, E:/Projects/GitHub/bernardoantunes.github.com/tests/_sass/_UnitGS.scss */
+/* line 186, ../_sass/_UnitGS.scss */
 #asDesigned-interface:before, #asDesigned-interface:after {
   content: "";
   display: table;
 }
-/* line 190, E:/Projects/GitHub/bernardoantunes.github.com/tests/_sass/_UnitGS.scss */
+/* line 190, ../_sass/_UnitGS.scss */
 #asDesigned-interface:after {
   clear: both;
 }
-/* line 22, ../_sass/_asDesigned.scss */
+/* line 186, ../_sass/_UnitGS.scss */
+#asDesigned-interface:before, #asDesigned-interface:after {
+  content: "";
+  display: table;
+}
+/* line 190, ../_sass/_UnitGS.scss */
+#asDesigned-interface:after {
+  clear: both;
+}
+/* line 23, ../_sass/_asDesigned.scss */
 #asDesigned-interface #asDesigned-startIcon {
   font-size: 1em;
   line-height: 1.5;
@@ -463,16 +473,16 @@ footer {
   display: block;
   *zoom: 1;
 }
-/* line 186, E:/Projects/GitHub/bernardoantunes.github.com/tests/_sass/_UnitGS.scss */
+/* line 186, ../_sass/_UnitGS.scss */
 #asDesigned-interface #asDesigned-startIcon:before, #asDesigned-interface #asDesigned-startIcon:after {
   content: "";
   display: table;
 }
-/* line 190, E:/Projects/GitHub/bernardoantunes.github.com/tests/_sass/_UnitGS.scss */
+/* line 190, ../_sass/_UnitGS.scss */
 #asDesigned-interface #asDesigned-startIcon:after {
   clear: both;
 }
-/* line 25, ../_sass/_asDesigned.scss */
+/* line 26, ../_sass/_asDesigned.scss */
 #asDesigned-interface #asDesigned-startIcon i {
   font-size: 1.4em;
   line-height: 1.07143;
@@ -486,7 +496,7 @@ footer {
   text-align: center;
   width: 1.5em;
 }
-/* line 34, ../_sass/_asDesigned.scss */
+/* line 35, ../_sass/_asDesigned.scss */
 #asDesigned-interface #asDesigned-dialog {
   font-size: 1em;
   line-height: 1.5;
@@ -494,7 +504,7 @@ footer {
   padding-bottom: 0;
   margin-top: 0;
   margin-bottom: 0;
-  height: 34.5em;
+  height: 43.5em;
   width: 100%;
   margin-left: 0%;
   margin-right: 0%;
@@ -513,16 +523,16 @@ footer {
   box-sizing: border-box;
   border-top: solid 0.25em #79a7ec;
 }
-/* line 186, E:/Projects/GitHub/bernardoantunes.github.com/tests/_sass/_UnitGS.scss */
+/* line 186, ../_sass/_UnitGS.scss */
 #asDesigned-interface #asDesigned-dialog:before, #asDesigned-interface #asDesigned-dialog:after {
   content: "";
   display: table;
 }
-/* line 190, E:/Projects/GitHub/bernardoantunes.github.com/tests/_sass/_UnitGS.scss */
+/* line 190, ../_sass/_UnitGS.scss */
 #asDesigned-interface #asDesigned-dialog:after {
   clear: both;
 }
-/* line 46, ../_sass/_asDesigned.scss */
+/* line 47, ../_sass/_asDesigned.scss */
 #asDesigned-interface #asDesigned-caption {
   font-size: 1.25em;
   line-height: 1.2;
@@ -551,7 +561,7 @@ footer {
 }
 
 @media screen and (min-width: 40em) {
-  /* line 58, ../_sass/_asDesigned.scss */
+  /* line 59, ../_sass/_asDesigned.scss */
   #asDesigned-interface {
     font-size: 1em;
     line-height: 1.5;
@@ -570,12 +580,12 @@ footer {
     display: block;
     *zoom: 1;
   }
-  /* line 186, E:/Projects/GitHub/bernardoantunes.github.com/tests/_sass/_UnitGS.scss */
+  /* line 186, ../_sass/_UnitGS.scss */
   #asDesigned-interface:before, #asDesigned-interface:after {
     content: "";
     display: table;
   }
-  /* line 190, E:/Projects/GitHub/bernardoantunes.github.com/tests/_sass/_UnitGS.scss */
+  /* line 190, ../_sass/_UnitGS.scss */
   #asDesigned-interface:after {
     clear: both;
   }
