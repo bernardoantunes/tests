@@ -7,16 +7,12 @@ $settings-colors-blue: 		rgb(121, 167, 236);
 $settings-colors-lightgray:	rgb(216, 216, 216);
 $settings-colors-darkgray:	rgb( 89,  89,  89);
 
-//<div id="asDesigned-interface">
-//	<div id="asDesigned-startIcon"></div>
-//	<div id="asDesigned-dialog">
-//		<div id="asDesigned-Caption">Settings</div>
-//		
-//	</div>
-//</div>
-
 #asDesigned-interface {
 	@include grid-unit($container-type: both);
+		position: absolute;
+		top: 1.5em;
+		left: 1.5em;
+		width: auto;
 	color: $settings-colors-darkgray;
 
 	#asDesigned-startIcon {
@@ -32,7 +28,6 @@ $settings-colors-darkgray:	rgb( 89,  89,  89);
 		}
 	}
 	#asDesigned-dialog {
-
 		.add-on {
 		}
 
@@ -40,11 +35,7 @@ $settings-colors-darkgray:	rgb( 89,  89,  89);
 			margin: 0.125em 0;
 			display: inline-block;
 		    width: 1.5em;
-//			background-color: #ccc;
-//		    border: 0.125em solid #666;
-//		    border-radius: 0.25em;
 		    text-align: center;
-
 		    color:#444;
 		    text-shadow:0 0 0.125em #ddd;
 		}
@@ -53,9 +44,7 @@ $settings-colors-darkgray:	rgb( 89,  89,  89);
 		    width: 3em;
 		    border: 0.125em solid #dadada;
 		    border-radius: 0.25em;
-		//    font-size: 1.4em;
 		    padding: 0.2em;
-		//    margin-top:-10px;    
 		}
 
 		select {
@@ -65,12 +54,10 @@ $settings-colors-darkgray:	rgb( 89,  89,  89);
 		input:focus, select:focus {
 		    outline: none;
 		    border-color: #9ecaed;
-		    //box-shadow: 0 0 0.6em #9ecaed;
 		}
 
-
-
 		@include grid-unit($container-type: both);
+
 		background-color: $settings-colors-lightgray;
 		border: solid 0.1em $settings-colors-blue;
 		//Set box sizing to border-box
@@ -108,5 +95,6 @@ $settings-colors-darkgray:	rgb( 89,  89,  89);
 @media screen and (min-width: 40em) {
 	#asDesigned-interface {
 		@include grid-unit(1/3, $container-type: both);
+		width: auto;
 	}
 }

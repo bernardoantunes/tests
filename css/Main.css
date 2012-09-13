@@ -432,6 +432,10 @@ footer {
   clear: both;
   display: block;
   *zoom: 1;
+  position: absolute;
+  top: 1.5em;
+  left: 1.5em;
+  width: auto;
   color: #595959;
 }
 /* line 186, ../_sass/_UnitGS.scss */
@@ -443,7 +447,7 @@ footer {
 #asDesigned-interface:after {
   clear: both;
 }
-/* line 22, ../_sass/_asDesigned.scss */
+/* line 26, ../_sass/_asDesigned.scss */
 #asDesigned-interface #asDesigned-startIcon {
   font-size: 1em;
   line-height: 1.5;
@@ -471,7 +475,7 @@ footer {
 #asDesigned-interface #asDesigned-startIcon:after {
   clear: both;
 }
-/* line 25, ../_sass/_asDesigned.scss */
+/* line 29, ../_sass/_asDesigned.scss */
 #asDesigned-interface #asDesigned-startIcon i {
   font-size: 1.4em;
   line-height: 1.07143;
@@ -485,7 +489,7 @@ footer {
   text-align: center;
   width: 1.5em;
 }
-/* line 34, ../_sass/_asDesigned.scss */
+/* line 38, ../_sass/_asDesigned.scss */
 #asDesigned-interface #asDesigned-dialog {
   font-size: 1em;
   line-height: 1.5;
@@ -511,7 +515,7 @@ footer {
   box-sizing: border-box;
   border-top: solid 0.25em #79a7ec;
 }
-/* line 39, ../_sass/_asDesigned.scss */
+/* line 42, ../_sass/_asDesigned.scss */
 #asDesigned-interface #asDesigned-dialog i {
   margin: 0.125em 0;
   display: inline-block;
@@ -520,18 +524,18 @@ footer {
   color: #444;
   text-shadow: 0 0 0.125em #ddd;
 }
-/* line 52, ../_sass/_asDesigned.scss */
+/* line 55, ../_sass/_asDesigned.scss */
 #asDesigned-interface #asDesigned-dialog select, #asDesigned-interface #asDesigned-dialog input, #asDesigned-interface #asDesigned-dialog label {
   width: 3em;
   border: 0.125em solid #dadada;
   border-radius: 0.25em;
   padding: 0.2em;
 }
-/* line 61, ../_sass/_asDesigned.scss */
+/* line 64, ../_sass/_asDesigned.scss */
 #asDesigned-interface #asDesigned-dialog select {
   width: 7em;
 }
-/* line 65, ../_sass/_asDesigned.scss */
+/* line 68, ../_sass/_asDesigned.scss */
 #asDesigned-interface #asDesigned-dialog input:focus, #asDesigned-interface #asDesigned-dialog select:focus {
   outline: none;
   border-color: #9ecaed;
@@ -545,7 +549,7 @@ footer {
 #asDesigned-interface #asDesigned-dialog:after {
   clear: both;
 }
-/* line 84, ../_sass/_asDesigned.scss */
+/* line 86, ../_sass/_asDesigned.scss */
 #asDesigned-interface #asDesigned-dialog #basic-data-fieldset {
   font-size: 1.4em;
   line-height: 1.07143;
@@ -567,7 +571,7 @@ footer {
   clear: both;
   display: inline;
 }
-/* line 88, ../_sass/_asDesigned.scss */
+/* line 90, ../_sass/_asDesigned.scss */
 #asDesigned-interface #asDesigned-dialog #screen-resolution-fieldset {
   font-size: 1.4em;
   line-height: 1.07143;
@@ -589,7 +593,7 @@ footer {
   clear: both;
   display: inline;
 }
-/* line 92, ../_sass/_asDesigned.scss */
+/* line 94, ../_sass/_asDesigned.scss */
 #asDesigned-interface #asDesigned-dialog #custom-adjustments-fieldset {
   font-size: 1.4em;
   line-height: 1.07143;
@@ -611,7 +615,7 @@ footer {
   clear: both;
   display: inline;
 }
-/* line 97, ../_sass/_asDesigned.scss */
+/* line 99, ../_sass/_asDesigned.scss */
 #asDesigned-interface #asDesigned-caption {
   font-size: 1.25em;
   line-height: 1.2;
@@ -640,7 +644,7 @@ footer {
 }
 
 @media screen and (min-width: 40em) {
-  /* line 109, ../_sass/_asDesigned.scss */
+  /* line 111, ../_sass/_asDesigned.scss */
   #asDesigned-interface {
     font-size: 1em;
     line-height: 1.5;
@@ -657,6 +661,7 @@ footer {
     clear: left;
     display: block;
     *zoom: 1;
+    width: auto;
   }
   /* line 186, ../_sass/_UnitGS.scss */
   #asDesigned-interface:before, #asDesigned-interface:after {

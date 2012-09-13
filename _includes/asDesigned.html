@@ -96,7 +96,7 @@ function AppViewModel()
             return Math.sqrt(Math.pow(this.screenWidth(), 2) + Math.pow(this.screenHeight(), 2));
         }, this);
     
-    this.screenSizeDiagonal = ko.observable(3.5);
+    this.screenSizeDiagonal = ko.observable(15.4);
 
     this.screenDefinition = ko.computed(function() {
             return this.screenDiagonal() / this.screenSizeDiagonal();
@@ -105,7 +105,7 @@ function AppViewModel()
     //Now lets calculate the author/user ratio
 
     //For tests only REMOVE.
-    this.viewingDistance = ko.observable(15);
+    this.viewingDistance = ko.observable(20);
 
     this.adjustValue = ko.computed(function() {
             return calculateViewingAngle(this.authorViewingDistance(), 1) /
