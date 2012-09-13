@@ -143,7 +143,7 @@ function AppViewModel()
 //                        **********
 //
 // Q: Corrigir o problema de quando ponho pequeno e depois grande de novo
-//    o layout nao fico como o original.
+//    o layout nao fica como o original.
 //
 // Q: Verificar quando temos ecrans com diferentes aspect ratios
 //    By example, designed in a 4:3 and viewed in a 16:9.
@@ -173,5 +173,25 @@ appViewModel.screenDefinitionRatio.subscribe(function (newValue) {
 });
 
 // Activates knockout.js
-ko.applyBindings(appViewModel);
+//ko.applyBindings(appViewModel);
 </script>
+
+<script type="text/javascript">
+//This function activates the asDesigned interface.
+function asDesigned()
+{
+
+var asDesignedStart =
+    '<object type="image/svg+xml" data="/img/asDesigned/asDesigned-logo.svg">' +
+        '<img src="/img/asDesigned/asDesigned-logo.svg" alt="As Designed Logo">' +
+    '</object>';
+$("#asDesigned-placeholder").html(asDesignedStart);
+
+}
+
+//asDesigned();
+
+</script>
+
+
+<img src="/img/asDesigned/asDesigned-logo.svg" width="100" height="100" alt="As Designed Logo"/>
